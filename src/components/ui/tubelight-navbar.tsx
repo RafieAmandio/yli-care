@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -23,6 +24,8 @@ export function NavBar({ items, className, scrollThreshold = 50 }: NavBarProps) 
     const [isMobile, setIsMobile] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
 
+    const pathname = usePathname()
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768)
@@ -33,37 +36,36 @@ export function NavBar({ items, className, scrollThreshold = 50 }: NavBarProps) 
             // Check if scrolled past the threshold
             setIsScrolled(scrollY > scrollThreshold)
 
-            // Scroll Spy Logic
-            const sections = items.map(item => {
-                if (item.url === '#' || item.url === '/') return { id: 'home', offset: 0 }
-                return { id: item.url.replace('#', ''), offset: 0 }
-            })
-
-            // Find the current active section
-            let currentActive = items[0].name
-
-            // Special check for bottom of page
-            if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
-                // Assuming the last item is the bottom-most section
-                // But let's stick to section positions for accuracy
+            // If we are not on the home page, don't run scroll spy for sections
+            if (pathname !== '/') {
+                const currentItem = items.find(item => item.url === pathname)
+                if (currentItem) {
+                    setActiveTab(currentItem.name)
+                }
+                return
             }
 
+            // Scroll Spy Logic for Home Page
+            let currentActive = items[0].name // Default to Home
+
             for (const item of items) {
-                if (item.url === '#' || item.url === '/') {
-                    if (scrollY < 100) {
-                        currentActive = item.name
-                        break
-                    }
+                // Skip Home and external links
+                if (item.url === '/' || item.url.startsWith('/transparency')) {
                     continue
                 }
 
-                const element = document.getElementById(item.url.replace('#', ''))
-                if (element) {
-                    const rect = element.getBoundingClientRect()
-                    // If the top of the section is within the top third of the viewport
-                    // or if the bottom of the section is still in view
-                    if (rect.top <= 300 && rect.bottom >= 100) {
-                        currentActive = item.name
+                // Handle section links (/#id)
+                if (item.url.startsWith('/#')) {
+                    const sectionId = item.url.replace('/#', '')
+                    const element = document.getElementById(sectionId)
+
+                    if (element) {
+                        const rect = element.getBoundingClientRect()
+                        // If the section top is at or above the threshold (scrolled into view)
+                        // Using 150px as a threshold to trigger slightly before the section hits the top
+                        if (rect.top <= 150) {
+                            currentActive = item.name
+                        }
                     }
                 }
             }
@@ -81,7 +83,7 @@ export function NavBar({ items, className, scrollThreshold = 50 }: NavBarProps) 
             window.removeEventListener("resize", handleResize)
             window.removeEventListener("scroll", handleScroll)
         }
-    }, [items, scrollThreshold])
+    }, [items, scrollThreshold, pathname])
 
     const isImpact = activeTab === 'Impact'
 
