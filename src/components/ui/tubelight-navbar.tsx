@@ -90,12 +90,12 @@ export function NavBar({ items, className, scrollThreshold = 50 }: NavBarProps) 
     return (
         <div
             className={cn(
-                "fixed bottom-4 sm:bottom-auto sm:top-0 left-1/2 -translate-x-1/2 z-[100] mb-0 sm:pt-6 w-full sm:w-auto px-4 sm:px-0",
+                "fixed top-0 left-1/2 -translate-x-1/2 z-[100] pt-6 w-full sm:w-auto px-4 sm:px-0",
                 className,
             )}
         >
             <div className={cn(
-                "flex items-center gap-3 py-1 px-1 rounded-full transition-all duration-300",
+                "flex items-center gap-1 sm:gap-3 py-1 px-1 rounded-full transition-all duration-300 overflow-x-auto no-scrollbar max-w-[95vw] sm:max-w-none w-fit mx-auto",
                 isScrolled && !isImpact
                     ? "bg-background/5 border border-border backdrop-blur-lg shadow-lg"
                     : "bg-transparent border-transparent"
@@ -111,7 +111,7 @@ export function NavBar({ items, className, scrollThreshold = 50 }: NavBarProps) 
                             href={item.url}
                             onClick={() => setActiveTab(item.name)}
                             className={cn(
-                                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                                "relative cursor-pointer text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-colors whitespace-nowrap",
                                 "text-foreground/80 hover:text-primary",
                                 isActive && "bg-muted text-primary",
                                 forceWhite && "text-white hover:text-white/80", // Force white text in hero and impact
