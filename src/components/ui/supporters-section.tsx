@@ -7,6 +7,7 @@ interface Supporter {
     name: string
     logo: string
     className?: string
+    url: string
 }
 
 interface SupportersSectionProps {
@@ -44,12 +45,14 @@ export function SupportersSection({
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                             className={`relative grayscale hover:grayscale-0 transition-all duration-500 ${supporter.className || "w-32 h-16 md:w-48 md:h-24"}`}
                         >
-                            <Image
-                                src={supporter.logo}
-                                alt={supporter.name}
-                                fill
-                                className="object-contain"
-                            />
+                            <a href={supporter.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative">
+                                <Image
+                                    src={supporter.logo}
+                                    alt={supporter.name}
+                                    fill
+                                    className="object-contain"
+                                />
+                            </a>
                         </motion.div>
                     ))}
                 </div>

@@ -35,10 +35,10 @@ function Counter({ value, prefix = "", suffix = "" }: { value: number, prefix?: 
 
 export function StatisticsSection() {
     const stats: Statistic[] = [
-        { label: "Total Donations", value: 11, prefix: "Rp ", suffix: " B+" },
-        { label: "Lives Impacted", value: 45000, suffix: "+" },
-        { label: "Communities Served", value: 120, suffix: "" },
-        { label: "Volunteers", value: 850, suffix: "+" },
+        { label: "Total Donations", value: 1, prefix: "Rp ", suffix: "XX B+" },
+        { label: "Lives Impacted", value: 1, suffix: "XX+" },
+        { label: "Communities Served", value: 1, suffix: "XX" },
+        { label: "Volunteers", value: 1, suffix: "XX+" },
     ]
 
     return (

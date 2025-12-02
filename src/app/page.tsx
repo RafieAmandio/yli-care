@@ -32,8 +32,8 @@ export default function DemoOne() {
     ]
 
     const supporters = [
-        { name: "ASAR Humanity", logo: "/ASAR_Logo.webp", className: "w-64 h-32" },
-        { name: "YLI", logo: "/YLI_logo.png" },
+        { name: "ASAR Humanity", logo: "/ASAR_Logo.webp", className: "w-64 h-32", url: "https://asarhumanity.org/id" },
+        { name: "YLI", logo: "/YLI_logo.png", url: "https://yli.or.id/" },
     ];
 
     return (
@@ -41,7 +41,7 @@ export default function DemoOne() {
             <NavBar items={navItems} scrollThreshold={3000} />
 
             {/* Scrollable container for the gallery */}
-            <div className="h-[400vh] relative">
+            <div className="h-[250vh] relative">
                 <div className="sticky top-0 h-screen w-full overflow-hidden">
                     <InfiniteGallery
                         images={sampleImages}

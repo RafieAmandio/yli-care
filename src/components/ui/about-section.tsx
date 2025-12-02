@@ -14,13 +14,14 @@ export function AboutSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-6xl font-serif italic leading-tight mb-4 md:mb-6">
-                            From <span className="text-gray-400">Alumni</span> to <span className="text-gray-400">Movement</span>.
+                            More Than Just <span className="text-gray-400">Alumni</span>. <br />
+                            A Movement for <span className="text-gray-400">Everyone</span>.
                         </h2>
                         <p className="text-lg md:text-xl leading-relaxed text-gray-600 font-light mb-4 md:mb-6">
-                            We are a collective of Young Leaders Indonesia (YLI) alumni, united by a shared vision to serve our nation. What started as a network has evolved into a <strong>Gerakan</strong> (movement) for tangible change.
+                            While initiated by Young Leaders Indonesia (YLI) alumni, this movement belongs to everyone who cares. We are uniting hearts and hands across the nation to bring hope where it's needed most.
                         </p>
                         <p className="text-base md:text-lg leading-relaxed text-gray-500">
-                            Leveraging our diverse expertise and networks, we mobilize resources to provide rapid, effective relief to communities in Sumatra facing the aftermath of natural disasters. We are not just observers; we are active participants in rebuilding our homeland.
+                            Whether you are an alumnus, a student, a professional, or simply someone who wants to help, your contribution matters. We mobilize resources to provide rapid, transparent, and effective relief to communities in Sumatra. Join us in rebuilding lives and restoring hope.
                         </p>
                     </motion.div>
                 </div>
